@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1c3a3d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Schede D&D">
+<link rel="apple-touch-icon" href="icon-180.png">
+<title>Le mie schede D&amp;D</title>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@400;500;700;800&family=Cinzel:wght@600;800&display=swap" rel="stylesheet">
+<style>
+body,.th{--bg:hsl(var(--h) 22% 94%);--card:hsl(var(--h) 30% 99%);--ink:hsl(var(--h) 35% 12%);--mut:hsl(var(--h) 12% 38%);--ac:hsl(var(--h) 50% 30%);--acs:hsl(var(--h) 40% 88%);--ln:hsl(var(--h) 20% 80%);--dg:#9B2C2C}
+:root{--h:175;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){body,.th{--bg:hsl(var(--h) 28% 8%);--card:hsl(var(--h) 24% 13%);--ink:hsl(var(--h) 25% 92%);--mut:hsl(var(--h) 12% 65%);--ac:hsl(var(--h) 55% 68%);--acs:hsl(var(--h) 35% 22%);--ln:hsl(var(--h) 20% 22%);--dg:#E58A8A}}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.4 'Alegreya Sans',system-ui,sans-serif;max-width:640px;margin-inline:auto;padding:12px 14px 80px}
+h1{font-size:28px;font-weight:800;margin:8px 0 12px}
+button{font:inherit;color:inherit;background:var(--card);border:1px solid var(--ln);border-radius:10px;padding:8px 12px;cursor:pointer}
+button.p{background:var(--ac);color:var(--bg);border-color:var(--ac);font-weight:700}
+button.d{color:var(--dg)}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--ac);outline-offset:1px}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--ln);border-radius:8px;padding:7px 9px;width:100%}
+textarea{min-height:90px}
+.card{background:var(--card);border:1px solid var(--ln);border-radius:12px;padding:12px;margin-bottom:10px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.row>*{flex:1 1 0}
+.top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.top b{font-size:22px;font-weight:800}
+.top span{color:var(--mut);margin-left:auto}
+.tabs{display:flex;gap:6px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);padding:6px 0;z-index:5}
+.tabs button{flex:1;font-weight:700}
+.tabs button.on,.chip.on{background:var(--ac);color:var(--bg);border-color:var(--ac)}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:6px}
+.chip{white-space:nowrap;padding:6px 12px;border-radius:99px}
+.ch{cursor:pointer}
+.ch .n{font-size:20px;font-weight:800}
+.ch .s{color:var(--mut)}
+.lab{font-size:14px;color:var(--mut);display:block;margin-bottom:2px}
+.stat{text-align:center;background:var(--acs);border-radius:10px;padding:8px 4px}
+.stat b{font-size:22px;display:block}
+.hp{display:flex;align-items:center;gap:6px;justify-content:space-between}
+.hp .v{font-size:44px;font-weight:800;line-height:1}
+.ab{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ab div{text-align:center;border:1px solid var(--ln);border-radius:10px;padding:6px;background:var(--card)}
+.ab b{font-size:24px;display:block}
+.ab input{text-align:center;padding:3px}
+.pip{width:26px;height:26px;border-radius:50%;border:2px solid var(--ac);background:var(--ac);padding:0;flex:none}
+.pip.sp{background:transparent}
+.pips{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.badge{font-size:13px;font-weight:700;background:var(--acs);color:var(--ac);border-radius:6px;padding:1px 7px;margin-left:6px}
+.it h3{margin:0;font-size:18px}
+.it p{margin:4px 0 0;color:var(--mut)}
+.sl{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.sl>b{width:34px}
+.sl input{width:54px;flex:none}
+.empty{color:var(--mut);text-align:center;padding:18px}
+h1,.hero b,.ch .n,.ab b,.hp .v,.stat b{font-family:Cinzel,Georgia,serif;letter-spacing:.02em}
+.hero{display:flex;align-items:center;gap:12px;background:var(--acs);border-left:5px solid var(--ac);border-radius:12px;padding:12px;margin-bottom:8px}
+.hero b{font-size:24px;line-height:1.1;display:block}
+.hero .s{color:var(--mut)}
+.hero button{flex:none}
+.gl{font-size:36px;line-height:1;flex:none}
+.ch{display:flex;align-items:center;gap:12px;border-left:5px solid var(--ac)}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const T={A:'Azione',B:'Azione Bonus',R:'Reazione',G:'Gratuita',M:'Movimento'};
+const AB=['FOR','DES','COS','INT','SAG','CAR'];
+const BASE=[
+['Attacco','A','Colpisci con un’arma o un attacco senza armi.'],
+['Scatto','A','Muoviti di una quantità pari alla tua velocità.'],
+['Disimpegno','A','Il tuo movimento non provoca attacchi di opportunità.'],
+['Schivata','A','Gli attacchi contro di te hanno svantaggio fino al tuo prossimo turno.'],
+['Aiuto','A','Dai vantaggio a un alleato su una prova o attacco.'],
+['Nascondersi','A','Prova di Destrezza (Furtività) per nasconderti.'],
+['Influenza','A','Prova per persuadere, intimidire o ingannare.'],
+['Magia','A','Lancia un incantesimo o usa un oggetto magico.'],
+['Prepararsi','A','Scegli un innesco e una reazione da usare dopo.'],
+['Cercare','A','Prova di Saggezza per individuare qualcosa.'],
+['Studiare','A','Prova di Intelligenza per ricordare o analizzare.'],
+['Utilizzare','A','Usa un oggetto che richiede un’azione.'],
+['Attacco di opportunità','R','Quando un nemico lascia la tua portata, un attacco in mischia.'],
+['Interazione con oggetto','G','Una interazione gratuita con un oggetto per turno.']];
+let S={chars:[],cur:null,tab:'scheda',flt:'ALL',del:false,bk:''};
+try{S.chars=JSON.parse(localStorage.getItem('dnd24')||'[]')}catch(e){}
+const save=()=>{try{localStorage.setItem('dnd24',JSON.stringify(S.chars))}catch(e){}};
+const C=()=>S.chars.find(c=>c.id===S.cur);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const mod=s=>Math.floor((s-10)/2), sg=n=>n>=0?'+'+n:''+n, pb=l=>Math.ceil(l/4)+1;
+const $=id=>document.getElementById(id);
+const inp=(p,v,t='text',x='')=>`<input data-f="${p}" data-n="${t==='number'?1:0}" type="${t}" ${t==='number'?'inputmode="numeric"':''} value="${esc(v)}" ${x}>`;
+const opts=(sel)=>Object.entries(T).map(([k,v])=>`<option value="${k}" ${k===sel?'selected':''}>${v}</option>`).join('');
+const pips=(max,used,a,i)=>`<div class="pips">${Array.from({length:max},(_,k)=>`<button class="pip ${k<used?'sp':''}" aria-label="uso ${k+1}" data-a="${a}" data-i="${i}" data-k="${k}"></button>`).join('')}</div>`;
+const newChar=()=>({id:'c'+Date.now(),name:'Nuovo personaggio',cls:'',spc:'',lvl:1,hp:{cur:10,max:10,tmp:0},ac:10,spd:9,abil:{FOR:10,DES:10,COS:10,INT:10,SAG:10,CAR:10},mx:Array(9).fill(0),us:Array(9).fill(0),acts:[],spells:[],notes:''});
+
+function home(){
+ return `<h1>Le mie schede</h1>
+ ${S.chars.length?S.chars.map(c=>`<div class="card ch th" style="--h:${theme(c).h}" data-a="open" data-id="${c.id}"><div class="gl">${theme(c).g}</div><div><div class="n">${esc(c.name)||'Senza nome'}</div><div class="s">${esc(c.spc)} ${esc(c.cls)} · liv. ${c.lvl} · PF ${c.hp.cur}/${c.hp.max} · CA ${c.ac}</div></div></div>`).join(''):'<div class="empty">Nessun personaggio. Creane uno per iniziare.</div>'}
+ <button class="p" style="width:100%" data-a="new">Nuovo personaggio</button>
+ <div class="card" style="margin-top:18px"><span class="lab">Backup: i dati sono salvati su questo browser. Esporta il testo e conservalo, oppure incollalo qui per importare.</span>
+ <textarea id="bk">${esc(S.bk)}</textarea>
+ <div class="row" style="margin-top:8px"><button data-a="exp">Esporta</button><button data-a="imp">Importa</button></div></div>`;
+}
+
+function charView(){
+ const c=C();
+ const t=theme(c);let h=`<div class="hero"><button data-a="home" aria-label="Indietro">‹</button><div class="gl">${t.g}</div><div><b>${esc(c.name)||'Senza nome'}</b><div class="s">${esc(c.spc)} ${esc(c.cls)} · livello ${c.lvl}</div></div></div>
+ <div class="row" style="margin-bottom:6px"><button data-a="short">Riposo breve</button><button data-a="long">Riposo lungo</button></div>
+ <div class="tabs">${[['scheda','Scheda'],['azioni','Azioni'],['inc','Incantesimi']].map(([k,v])=>`<button class="${S.tab===k?'on':''}" data-a="tab" data-i="${k}">${v}</button>`).join('')}</div>`;
+ if(S.tab==='scheda'){
+  h+=`<div class="card"><div class="row"><div><span class="lab">Nome</span>${inp('name',c.name)}</div><div><span class="lab">Specie</span>${inp('spc',c.spc)}</div></div>
+  <span class="lab" style="margin-top:8px">Classi (la prima definisce il tema) · livello totale ${c.lvl}</span>${c.cl.map((x,i)=>`<div class="row" style="flex-wrap:nowrap;margin-bottom:6px"><div style="flex:1">${inp('cl.'+i+'.n',x.n,'text','placeholder="Classe"')}</div><div style="flex:0 0 70px">${inp('cl.'+i+'.l',x.l,'number')}</div>${c.cl.length>1?`<button class="d" style="flex:none" data-a="dcl" data-i="${i}" aria-label="Rimuovi classe">✕</button>`:''}</div>`).join('')}<button data-a="acl" style="width:100%">Aggiungi classe (multiclasse)</button></div>
+  <div class="card"><div class="hp"><button data-a="hp" data-i="-5">-5</button><button data-a="hp" data-i="-1">-1</button><div class="v">${c.hp.cur}</div><button data-a="hp" data-i="1">+1</button><button data-a="hp" data-i="5">+5</button></div>
+  <div class="row" style="margin-top:10px"><div><span class="lab">PF massimi</span>${inp('hp.max',c.hp.max,'number')}</div><div><span class="lab">PF temporanei</span>${inp('hp.tmp',c.hp.tmp,'number')}</div></div></div>
+  <div class="row" style="margin-bottom:10px"><div class="stat"><span class="lab">CA</span>${inp('ac',c.ac,'number')}</div><div class="stat"><span class="lab">Velocità (m)</span>${inp('spd',c.spd,'number')}</div><div class="stat"><span class="lab">Competenza</span><b>${sg(pb(c.lvl))}</b></div><div class="stat"><span class="lab">Iniziativa</span><b>${sg(mod(c.abil.DES))}</b></div></div>
+  <div class="ab" style="margin-bottom:10px">${AB.map(a=>`<div><span class="lab">${a}</span><b>${sg(mod(c.abil[a]))}</b>${inp('abil.'+a,c.abil[a],'number')}</div>`).join('')}</div>
+  <div class="card"><span class="lab">Equipaggiamento e note</span><textarea data-f="notes" data-n="0">${esc(c.notes)}</textarea></div>
+  <button class="d" style="width:100%" data-a="del">${S.del?'Tocca ancora per eliminare':'Elimina personaggio'}</button>`;
+ }
+ if(S.tab==='azioni'){
+  const items=[...c.acts.map((o,i)=>({k:'a',i,o})),...c.spells.map((o,i)=>({k:'s',i,o}))].filter(x=>S.flt==='ALL'||x.o.t===S.flt);
+  const order=Object.keys(T);items.sort((x,y)=>order.indexOf(x.o.t)-order.indexOf(y.o.t));
+  h+=`<div class="chips">${['ALL',...order].map(k=>`<button class="chip ${S.flt===k?'on':''}" data-a="flt" data-i="${k}">${k==='ALL'?'Tutte':T[k]}</button>`).join('')}</div>`;
+  h+=items.length?items.map(x=>{const o=x.o;return `<div class="card it"><div class="row" style="flex-wrap:nowrap"><h3 style="flex:1">${esc(o.name)}<span class="badge">${T[o.t]}</span>${x.k==='s'?`<span class="badge">${o.l?'Inc. '+o.l:'Trucchetto'}</span>`:''}</h3>${x.k==='a'?`<button class="d" style="flex:none" data-a="dact" data-i="${x.i}" aria-label="Elimina">✕</button>`:`<button class="p" style="flex:none" data-a="cast" data-i="${x.i}" ${o.l&&!c.mx.some((m,j)=>j+1>=o.l&&m>c.us[j])?'disabled':''}>Lancia</button>`}</div>
+  ${o.d?`<p>${esc(o.d)}</p>`:''}${x.k==='a'&&o.max?pips(o.max,o.used||0,'use',x.i)+`<p>Si ripristina con riposo ${o.rest==='long'?'lungo':'breve'}</p>`:''}</div>`}).join(''):'<div class="empty">Niente in questa categoria.</div>';
+  h+=`<div class="card"><span class="lab">Nuova azione</span>${'<input id="an" placeholder="Nome">'}
+  <div class="row" style="margin-top:8px"><select id="at">${opts('A')}</select><input id="am" type="number" inputmode="numeric" placeholder="Usi (0 = illimitati)"></div>
+  <div class="row" style="margin-top:8px"><select id="ar"><option value="short">Riposo breve</option><option value="long">Riposo lungo</option></select></div>
+  <input id="ad" placeholder="Descrizione breve" style="margin-top:8px"><div class="row" style="margin-top:8px"><button class="p" data-a="aact">Aggiungi</button><button data-a="base">Aggiungi azioni base 2024</button></div></div>`;
+ }
+ if(S.tab==='inc'){
+  h+=`<div class="card"><span class="lab">Slot incantesimo (tocca per spendere)</span>${c.mx.map((m,i)=>`<div class="sl"><b>Lv ${i+1}</b>${inp('mx.'+i,m,'number')}<div class="pips" style="margin:0">${Array.from({length:m},(_,k)=>`<button class="pip ${k<c.us[i]?'sp':''}" aria-label="slot" data-a="slot" data-i="${i}" data-k="${k}"></button>`).join('')}</div></div>`).join('')}</div>`;
+  for(let l=0;l<=9;l++){const L=c.spells.map((s,i)=>({s,i})).filter(x=>x.s.l===l);if(!L.length)continue;
+   h+=`<div class="card"><span class="lab">${l?'Livello '+l:'Trucchetti'}</span>${L.map(x=>`<div class="row" style="flex-wrap:nowrap;margin-top:6px"><div style="flex:1"><b>${esc(x.s.name)}</b><span class="badge">${T[x.s.t]}</span>${x.s.d?`<div style="color:var(--mut)">${esc(x.s.d)}</div>`:''}</div><button class="d" style="flex:none" data-a="dsp" data-i="${x.i}" aria-label="Elimina">✕</button></div>`).join('')}</div>`;}
+  h+=`<div class="card"><span class="lab">Nuovo incantesimo</span><input id="sn" placeholder="Nome">
+  <div class="row" style="margin-top:8px"><input id="sl" type="number" inputmode="numeric" placeholder="Livello (0 = trucchetto)"><select id="st">${opts('A')}</select></div>
+  <input id="sd" placeholder="Note (gittata, durata, concentrazione…)" style="margin-top:8px"><button class="p" style="width:100%;margin-top:8px" data-a="asp">Aggiungi</button></div>`;
+ }
+ return h;
+}
+
+const TH=[[/barbar/,8,'🪓'],[/bard/,330,'🎻'],[/chieric|cleric/,50,'✨'],[/druid/,130,'🌿'],[/guerrier|fighter/,195,'⚔️'],[/monac|monk/,28,'👊'],[/paladin/,38,'🛡️'],[/ranger|esplorat/,100,'🏹'],[/ladr|rogue/,260,'🗡️'],[/stregon|sorcer/,350,'🔥'],[/warlock|occultist/,285,'👁️'],[/\bmag|wizard/,232,'📖']];
+function theme(c){const s=((c.cl&&c.cl[0]&&c.cl[0].n)||c.cls||'').toLowerCase();for(const[r,h,g]of TH)if(r.test(s))return{h,g};return{h:175,g:'🎲'}}
+const sync=c=>{if(!c.cl)c.cl=[{n:c.cls||'',l:c.lvl||1}];c.cl.forEach(x=>x.l=Math.max(1,x.l||1));c.lvl=c.cl.reduce((s,x)=>s+x.l,0);c.cls=c.cl.length>1?c.cl.map(x=>x.n+' '+x.l).join(' / '):c.cl[0].n;};
+function R(){S.chars.forEach(sync);const c=S.cur?C():null;document.documentElement.style.setProperty('--h',c?theme(c).h:175);$('app').innerHTML=c?charView():home();}
+
+document.addEventListener('change',e=>{
+ const f=e.target.dataset&&e.target.dataset.f;if(!f)return;
+ const c=C(),p=f.split('.'),last=p.pop();let o=c;p.forEach(k=>o=o[k]);
+ o[last]=e.target.dataset.n==='1'?Math.max(0,parseInt(e.target.value)||0):e.target.value;
+ save();R();
+});
+document.addEventListener('click',e=>{
+ const b=e.target.closest('[data-a]');if(!b)return;
+ const a=b.dataset.a,i=b.dataset.i,k=+b.dataset.k,id=b.dataset.id,c=S.cur?C():null;
+ if(a!=='del')S.del=false;
+ if(a==='open'){S.cur=id;S.tab='scheda';}
+ else if(a==='home'){S.cur=null;}
+ else if(a==='new'){const n=newChar();S.chars.push(n);S.cur=n.id;S.tab='scheda';}
+ else if(a==='exp'){S.bk=JSON.stringify(S.chars);}
+ else if(a==='imp'){try{const d=JSON.parse($('bk').value);if(Array.isArray(d)){S.chars=d;S.bk='';}}catch(x){S.bk='Testo non valido. Incolla il backup esportato.';}}
+ else if(a==='tab'){S.tab=i;}
+ else if(a==='flt'){S.flt=i;}
+ else if(a==='hp'){let d=+i;if(d<0&&c.hp.tmp>0){const t=Math.min(c.hp.tmp,-d);c.hp.tmp-=t;d+=t;}c.hp.cur=Math.max(0,Math.min(c.hp.max,c.hp.cur+d));}
+ else if(a==='short'){c.acts.forEach(x=>{if(x.rest==='short')x.used=0});}
+ else if(a==='long'){c.acts.forEach(x=>x.used=0);c.us=Array(9).fill(0);c.hp.cur=c.hp.max;c.hp.tmp=0;}
+ else if(a==='slot'){c.us[+i]=k<c.us[+i]?k:k+1;}
+ else if(a==='use'){const x=c.acts[+i];x.used=k<(x.used||0)?k:k+1;}
+ else if(a==='cast'){const s=c.spells[+i];if(s.l){const j=c.mx.findIndex((m,j)=>j+1>=s.l&&m>c.us[j]);if(j>=0)c.us[j]++;}}
+ else if(a==='dact'){c.acts.splice(+i,1);}
+ else if(a==='dsp'){c.spells.splice(+i,1);}
+ else if(a==='aact'){const n=$('an').value.trim();if(n)c.acts.push({name:n,t:$('at').value,d:$('ad').value,max:parseInt($('am').value)||0,used:0,rest:$('ar').value});}
+ else if(a==='asp'){const n=$('sn').value.trim();if(n)c.spells.push({name:n,l:Math.min(9,parseInt($('sl').value)||0),t:$('st').value,d:$('sd').value});}
+ else if(a==='base'){BASE.forEach(([n,t,d])=>{if(!c.acts.some(x=>x.name===n))c.acts.push({name:n,t,d,max:0,used:0,rest:'short'})});}
+ else if(a==='acl'){c.cl.push({n:'',l:1});}
+ else if(a==='dcl'){c.cl.splice(+i,1);}
+ else if(a==='del'){if(S.del){S.chars=S.chars.filter(x=>x.id!==S.cur);S.cur=null;S.del=false;}else{S.del=true;}}
+ save();R();
+});
+R();
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+</script>
+</body>
+</html>
